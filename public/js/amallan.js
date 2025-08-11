@@ -4,21 +4,19 @@
 // PENTING: Ganti dengan Kunci API OpenRouter Anda yang sebenarnya
 // JANGAN mengekspos kunci API Anda di aplikasi produksi!
 // =========================================================
-const OPENROUTER_API_KEY = "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"; // GANTI DENGAN KUNCI API OPENROUTER ANDA YANG ASLI
+const OPENROUTER_API_KEY = "sk-or-v1-04471356a0dbfdccb221b124dbf1d76a1fcfd81347cf7deb14e67d6c37f04e9"; // GANTI DENGAN KUNCI API OPENROUTER ANDA YANG ASLI
 
 if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === "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") {
     console.error("Peringatan: Kunci API OpenRouter belum diatur atau masih placeholder. Harap ganti 'YOUR_OPENROUTER_API_KEY_HERE' dengan kunci API Anda di kode JavaScript. Ingat, ini tidak aman untuk produksi!");
 }
 
 // Opsional: URL situs Anda untuk peringkat di OpenRouter
-const YOUR_SITE_URL = window.location.origin; // Menggunakan domain saat ini
+const YOUR_SITE_URL = window.location.origin;
 // Opsional: Judul situs Anda untuk peringkat di OpenRouter
 const YOUR_SITE_NAME = 'Chat Temal Amallan';
 
 // --- Variabel untuk Riwayat Chat (untuk dikirim ke LLM) ---
-// Ini akan menyimpan riwayat percakapan untuk memberikan konteks kepada bot.
-// Inisialisasi dengan prompt sistem dan respons awal bot.
-let conversationHistory = []; // Akan diinisialisasi di initializeChat()
+let conversationHistory = [];
 
 // --- Data Respons Spesifik Amallan ---
 const specificResponses = [{
@@ -346,21 +344,12 @@ const specificResponses = [{
     quickReplies: ["Tentang Amallan", "Program & Layanan", "Kontak Kami"]
 }];
 
-// --- Elemen DOM Chatbot ---
-const chatContainer = document.getElementById('chat-container');
-const userInput = document.getElementById('user-input');
-const sendButton = document.getElementById('send-button');
-const clearButton = document.querySelector('.clear-chat-button');
+// --- Variabel Global untuk Elemen DOM ---
+// Dideklarasikan di sini agar bisa diakses oleh semua fungsi, 
+// tapi nilainya diisi setelah DOM siap.
+let chatContainer, userInput, sendButton, clearButton, chatbotModal, chatbotFab, closeChatbotButton, footer;
 
-// --- Elemen DOM Lainnya dari index.html (pastikan ini di luar scope if (chatContainer)) ---
-const mobileMenu = document.getElementById('mobile-menu');
-const chatbotModal = document.getElementById('chatbot-modal');
-const chatbotFab = document.querySelector('.chatbot-fab');
-const footer = document.querySelector('footer');
-const newContactForm = document.getElementById('contact-form-new');
-// const themeToggle = document.getElementById('theme-toggle'); // Dihapus jika tidak ada elemen ini di HTML
-
-// --- Inisialisasi Chatbot (dipanggil saat modal dibuka) ---
+// --- Fungsi Inisialisasi Chatbot ---
 async function initializeChat() {
     // Prompt sistem yang kaya informasi untuk OpenRouter/DeepSeek
     const systemPrompt = `
@@ -408,16 +397,13 @@ async function initializeChat() {
         `;
 
     // Reset riwayat percakapan
-    conversationHistory = [
-        {
-            role: "system",
-            content: systemPrompt
-        },
-        {
-            role: "assistant",
-            content: "Halo! 👋 Saya **Temal**, asisten digital Amallan. Ada yang bisa saya bantu?\n\nAnda bisa menanyakan tentang:\n- Tentang Amallan\n- Program & Layanan Kami\n- Cara Berdonasi\n- Pesantren Binaan Kami\n- Bergabung Sebagai Relawan\n- Mitra Strategis Kami\n\nAtau klik pertanyaan cepat di bawah:"
-        },
-    ];
+    conversationHistory = [{
+        role: "system",
+        content: systemPrompt
+    }, {
+        role: "assistant",
+        content: "Halo! 👋 Saya **Temal**, asisten digital Amallan. Ada yang bisa saya bantu?\n\nAnda bisa menanyakan tentang:\n- Tentang Amallan\n- Program & Layanan Kami\n- Cara Berdonasi\n- Pesantren Binaan Kami\n- Bergabung Sebagai Relawan\n- Mitra Strategis Kami\n\nAtau klik pertanyaan cepat di bawah:"
+    }, ];
 
     // Clear existing messages in UI
     if (chatContainer) {
@@ -427,20 +413,6 @@ async function initializeChat() {
     addBotMessage(conversationHistory[1].content, ["Tentang Amallan", "Program & Layanan", "Cara Berdonasi", "Kontak Kami"]);
 }
 
-
-// --- Event Listeners untuk Input Pengguna Chatbot ---
-// Pastikan elemen DOM sudah ada sebelum menambahkan event listener
-if (sendButton) {
-    sendButton.addEventListener('click', sendMessage);
-}
-if (userInput) {
-    userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') sendMessage();
-    });
-}
-if (clearButton) {
-    clearButton.addEventListener('click', clearChat);
-}
 
 // --- Fungsi Utama untuk Mengirim Pesan Chatbot ---
 async function sendMessage() {
@@ -611,7 +583,7 @@ function addBotMessage(text, quickReplies = []) {
     botMessageContentWrapper.className = 'bot-message-wrapper';
 
     const mascotImg = document.createElement('img');
-    mascotImg.src = 'asset/maskot_amallan.png';
+    mascotImg.src = "/asset/maskot_amallan.png"; // Perbaikan: Gunakan path absolut
     mascotImg.alt = 'Maskot Amallan';
     mascotImg.className = 'mascot-icon';
 
@@ -663,7 +635,7 @@ function showTypingIndicator() {
     typingIndicatorWrapper.id = 'typing-indicator-instance';
 
     const mascotImg = document.createElement('img');
-    mascotImg.src = 'asset/maskot_amallan.png';
+    mascotImg.src = "/asset/maskot_amallan.png"; // Perbaikan: Gunakan path absolut
     mascotImg.alt = 'Maskot Amallan';
     mascotImg.className = 'mascot-icon';
 
@@ -736,105 +708,103 @@ function normalizeText(text) {
     cleaned = cleaned.replace(/[^\w\s]/g, '');
     cleaned = cleaned.replace(/\s+/g, ' ');
 
-    const stemmingRules = [
-        {
-            suffix: 'nya',
-            replace: ''
-        }, {
-            suffix: 'lah',
-            replace: ''
-        }, {
-            suffix: 'kah',
-            replace: ''
-        }, {
-            suffix: 'pun',
-            replace: ''
-        }, {
-            suffix: 'ku',
-            replace: ''
-        }, {
-            suffix: 'mu',
-            replace: ''
-        }, {
-            suffix: 'kan',
-            replace: ''
-        }, {
-            suffix: 'i',
-            replace: ''
-        }, {
-            suffix: 'an',
-            replace: ''
-        }, {
-            suffix: 'isme',
-            replace: ''
-        }, {
-            suffix: 'isasi',
-            replace: ''
-        }, {
-            suffix: 'er',
-            replace: ''
-        }, {
-            suffix: 'wan',
-            replace: ''
-        }, {
-            suffix: 'wati',
-            replace: ''
-        }, {
-            suffix: 'nda',
-            replace: ''
-        }, {
-            prefix: 'memper',
-            replace: ''
-        }, {
-            prefix: 'meng',
-            replace: ''
-        }, {
-            prefix: 'meny',
-            replace: ''
-        }, {
-            prefix: 'men',
-            replace: ''
-        }, {
-            prefix: 'me',
-            replace: ''
-        }, {
-            prefix: 'ber',
-            replace: ''
-        }, {
-            prefix: 'bel',
-            replace: ''
-        }, {
-            prefix: 'beker',
-            replace: ''
-        }, {
-            prefix: 'diper',
-            replace: ''
-        }, {
-            prefix: 'ter',
-            replace: ''
-        }, {
-            prefix: 'di',
-            replace: ''
-        }, {
-            prefix: 'ke',
-            replace: ''
-        }, {
-            prefix: 'se',
-            replace: ''
-        }, {
-            prefix: 'per',
-            replace: ''
-        }, {
-            prefix: 'pem',
-            replace: ''
-        }, {
-            prefix: 'pen',
-            replace: ''
-        }, {
-            prefix: 'peng',
-            replace: ''
-        },
-    ];
+    const stemmingRules = [{
+        suffix: 'nya',
+        replace: ''
+    }, {
+        suffix: 'lah',
+        replace: ''
+    }, {
+        suffix: 'kah',
+        replace: ''
+    }, {
+        suffix: 'pun',
+        replace: ''
+    }, {
+        suffix: 'ku',
+        replace: ''
+    }, {
+        suffix: 'mu',
+        replace: ''
+    }, {
+        suffix: 'kan',
+        replace: ''
+    }, {
+        suffix: 'i',
+        replace: ''
+    }, {
+        suffix: 'an',
+        replace: ''
+    }, {
+        suffix: 'isme',
+        replace: ''
+    }, {
+        suffix: 'isasi',
+        replace: ''
+    }, {
+        suffix: 'er',
+        replace: ''
+    }, {
+        suffix: 'wan',
+        replace: ''
+    }, {
+        suffix: 'wati',
+        replace: ''
+    }, {
+        suffix: 'nda',
+        replace: ''
+    }, {
+        prefix: 'memper',
+        replace: ''
+    }, {
+        prefix: 'meng',
+        replace: ''
+    }, {
+        prefix: 'meny',
+        replace: ''
+    }, {
+        prefix: 'men',
+        replace: ''
+    }, {
+        prefix: 'me',
+        replace: ''
+    }, {
+        prefix: 'ber',
+        replace: ''
+    }, {
+        prefix: 'bel',
+        replace: ''
+    }, {
+        prefix: 'beker',
+        replace: ''
+    }, {
+        prefix: 'diper',
+        replace: ''
+    }, {
+        prefix: 'ter',
+        replace: ''
+    }, {
+        prefix: 'di',
+        replace: ''
+    }, {
+        prefix: 'ke',
+        replace: ''
+    }, {
+        prefix: 'se',
+        replace: ''
+    }, {
+        prefix: 'per',
+        replace: ''
+    }, {
+        prefix: 'pem',
+        replace: ''
+    }, {
+        prefix: 'pen',
+        replace: ''
+    }, {
+        prefix: 'peng',
+        replace: ''
+    }, ];
 
     let stemmedWords = cleaned.split(' ').map(word => {
         let currentWord = word;
@@ -995,219 +965,206 @@ async function clearChat() {
     scrollToBottom();
 }
 
-
-// --- Functions from index.html (main website logic) ---
-
-// Toggle dark mode (Optional, if you want to keep this feature)
-// Removed the automatic application on load for simplicity in this combined file,
-// but you can re-add if needed.
-// if (themeToggle) { // Dihapus karena themeToggle tidak ada di HTML yang baru
-//     themeToggle.addEventListener('click', () => {
-//         document.body.classList.toggle('dark');
-//         if (document.body.classList.contains('dark')) {
-//             localStorage.setItem('theme', 'dark');
-//         } else {
-//             localStorage.setItem('theme', 'light');
-//         }
-//     });
-//     // Apply saved theme on load (can be uncommented if themeToggle is always present)
-//     // if (localStorage.getItem('theme') === 'dark') {
-//     //     document.body.classList.add('dark');
-//     // }
-// }
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-    if (!mobileMenu || !document.body) return;
-    mobileMenu.classList.toggle('active');
-    document.body.classList.toggle('menu-open'); // Add/remove class to body
-}
-window.toggleMobileMenu = toggleMobileMenu; // Make it globally accessible for onclick in HTML
-
-// Smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-            const headerOffset = document.querySelector('header').offsetHeight || 0;
-            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - headerOffset - 10; // Adjust by 10px extra padding
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        }
-        // Close mobile menu if open after click
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
-            toggleMobileMenu(); // Use toggle function to also remove body.menu-open
-        }
-    });
-});
-
-// Privacy modal functions
-function showPrivacyModal() {
-    const privacyModal = document.getElementById('privacy-modal');
-    if (!privacyModal) return;
-    modal.style.display = 'flex';
-    setTimeout(() => {
-        modal.classList.add('is-visible');
-    }, 10);
-}
-window.showPrivacyModal = showPrivacyModal; // Make it globally accessible
-
-function hidePrivacyModal() {
-    const privacyModal = document.getElementById('privacy-modal');
-    if (!privacyModal) return;
-    modal.classList.remove('is-visible');
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 300);
-}
-window.hidePrivacyModal = hidePrivacyModal; // Make it globally accessible
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const privacyModal = document.getElementById('privacy-modal');
-    const chatbotModal = document.getElementById('chatbot-modal');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-
-    // Close privacy modal if clicked outside
-    if (privacyModal && event.target === privacyModal) {
-        hidePrivacyModal();
-    }
-    // Close chatbot modal if clicked outside
-    if (chatbotModal && event.target === chatbotModal) {
-        closeChatbotModal();
-    }
-    // Close mobile menu if clicked outside, but not on the toggle button itself
-    // Also ensure it's only active if the menu is open
-    if (mobileMenu && mobileMenu.classList.contains('active') && !mobileMenu.contains(event.target) && event.target !== mobileMenuToggle && (!mobileMenuToggle || !mobileMenuToggle.contains(event.target))) {
-        toggleMobileMenu();
-    }
-}
-
-// Chatbot position functionality
-window.addEventListener('scroll', () => {
-    if (chatbotFab && footer) {
-        const isMobile = window.innerWidth <= 768;
-
-        const defaultFabBottom = isMobile ? 20 : 30; // Posisi default FAB dari bawah layar
-
-        let targetFabBottom = defaultFabBottom;
-
-        // Dapatkan posisi footer relatif terhadap viewport
-        const footerRect = footer.getBoundingClientRect();
-
-        // Hitung posisi "terangkat" minimum dari dasar viewport agar tidak masuk ke footer
-        const minBottomDueToFooterOverlap = Math.max(0, window.innerHeight - footerRect.top + defaultFabBottom);
-
-        // Pastikan posisi chatbot tidak terpotong footer
-        targetFabBottom = Math.max(targetFabBottom, minBottomDueToFooterOverlap);
-
-        chatbotFab.style.bottom = `${targetFabBottom}px`;
-    }
-});
-
-// Form submission with SweetAlert for the NEW form
-if (newContactForm) {
-    newContactForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Mencegah submit default browser
-
-        const form = e.target;
-        const formData = new FormData(form);
-
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Penting untuk Formspree agar merespons dengan JSON
-                }
-            });
-
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pesan Terkirim!',
-                    text: 'Terima kasih atas pesan Anda. Kami akan segera menghubungi Anda.',
-                    confirmButtonColor: '#2E7D32',
-                    confirmButtonText: 'OK'
-                });
-                form.reset(); // Reset form setelah berhasil
-            } else {
-                // Tangani jika ada error dari Formspree
-                const data = await response.json();
-                if (Object.hasOwnProperty.call(data, 'errors')) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Mengirim Pesan!',
-                        text: data["errors"].map(error => error["message"]).join(", "),
-                        confirmButtonColor: '#FF0000',
-                        confirmButtonText: 'OK'
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Mengirim Pesan!',
-                        text: 'Terjadi kesalahan saat mengirim pesan. Mohon coba lagi.',
-                        confirmButtonColor: '#FF0000',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal Mengirim Pesan!',
-                text: 'Terjadi masalah jaringan atau koneksi. Mohon coba lagi.',
-                confirmButtonColor: '#FF0000',
-                confirmButtonText: 'OK'
-            });
-        }
-    });
-}
-
-// Chatbot Modal Functions
 function openChatbotModal() {
     if (!chatbotModal) return;
     chatbotModal.classList.add('is-visible');
     // Panggil initializeChat() di sini untuk membersihkan dan memulai chat baru setiap kali modal dibuka
     initializeChat();
 }
-window.openChatbotModal = openChatbotModal; // Make it globally accessible for onclick in HTML
 
 function closeChatbotModal() {
     if (!chatbotModal) return;
     chatbotModal.classList.remove('is-visible');
-    // Opsional: Hentikan model atau bersihkan riwayat jika diperlukan
-    // ( initializeChat() di openChatbotModal sudah menangani pembersihan riwayat UI dan logic )
 }
-window.closeChatbotModal = closeChatbotModal; // Make it globally accessible for onclick in HTML
 
-// Intersection Observer for animations
-const applyAnimationsOnScroll = () => {
-    const animatedElements = document.querySelectorAll('.animate__animated');
 
-    const observer = new IntersectionObserver((entries) => {
+// ==========================================================
+// BLOK UTAMA: Menjalankan kode setelah halaman siap
+// ==========================================================
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Inisialisasi variabel elemen DOM ---
+    chatContainer = document.getElementById('chat-container');
+    userInput = document.getElementById('user-input');
+    sendButton = document.getElementById('send-button');
+    clearButton = document.querySelector('.clear-chat-button');
+    chatbotModal = document.getElementById('chatbot-modal');
+    chatbotFab = document.querySelector('.chatbot-fab');
+    closeChatbotButton = document.querySelector('.close-chatbot-button');
+    footer = document.querySelector('footer');
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    const header = document.querySelector('header');
+    const newContactForm = document.getElementById('contact-form-new');
+
+    // --- Pemasangan Event Listener ---
+    if (chatbotFab) {
+        chatbotFab.addEventListener('click', openChatbotModal);
+    }
+    if (closeChatbotButton) {
+        closeChatbotButton.addEventListener('click', closeChatbotModal);
+    }
+    if (sendButton) {
+        sendButton.addEventListener('click', sendMessage);
+    }
+    if (userInput) {
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+    if (clearButton) {
+        clearButton.addEventListener('click', clearChat);
+    }
+
+    // Mobile menu toggle
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    }
+
+    // Close menu when a link is clicked
+    if (mainNav) {
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+    }
+
+    // Header scroll effects
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (header) {
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, { passive: true });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const animationClass = entry.target.getAttribute('data-animation') || 'animate__fadeIn';
-                entry.target.classList.add(animationClass);
-                observer.unobserve(entry.target);
+                entry.target.classList.add('visible');
             }
         });
-    }, {
-        threshold: 0.1
+    }, observerOptions);
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+        observer.observe(el);
     });
 
-    animatedElements.forEach(element => {
-        observer.observe(element);
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target && header) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-};
-document.addEventListener('DOMContentLoaded', applyAnimationsOnScroll);
+
+    // Chatbot position functionality
+    window.addEventListener('scroll', () => {
+        if (chatbotFab && footer) {
+            const isMobile = window.innerWidth <= 768;
+            const defaultFabBottom = isMobile ? 20 : 30;
+            let targetFabBottom = defaultFabBottom;
+            const footerRect = footer.getBoundingClientRect();
+            const minBottomDueToFooterOverlap = Math.max(0, window.innerHeight - footerRect.top + defaultFabBottom);
+            targetFabBottom = Math.max(targetFabBottom, minBottomDueToFooterOverlap);
+            chatbotFab.style.bottom = `${targetFabBottom}px`;
+        }
+    });
+
+    // Form submission with SweetAlert
+    if (newContactForm) {
+        newContactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pesan Terkirim!',
+                        text: 'Terima kasih atas pesan Anda. Kami akan segera menghubungi Anda.',
+                        confirmButtonColor: '#2E7D32',
+                        confirmButtonText: 'OK'
+                    });
+                    form.reset();
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwnProperty.call(data, 'errors')) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal Mengirim Pesan!',
+                            text: data["errors"].map(error => error["message"]).join(", "),
+                            confirmButtonColor: '#FF0000',
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal Mengirim Pesan!',
+                            text: 'Terjadi kesalahan saat mengirim pesan. Mohon coba lagi.',
+                            confirmButtonColor: '#FF0000',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal Mengirim Pesan!',
+                    text: 'Terjadi masalah jaringan atau koneksi. Mohon coba lagi.',
+                    confirmButtonColor: '#FF0000',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    }
+
+    // Modal behavior to close when clicking outside
+    window.onclick = function(event) {
+        if (event.target == chatbotModal) {
+            closeChatbotModal();
+        }
+    };
+});

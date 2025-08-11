@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     
     <style>
         :root {
@@ -1060,8 +1061,21 @@
             }
 
             .program-card-grid,
-            .step-card-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .step-card-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dampak-info-card {
+                padding: var(--space-6);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-section {
+                margin-bottom: var(--space-8);
             }
         }
 
@@ -1220,166 +1234,239 @@
         .shadow-lg { box-shadow: var(--shadow-lg); }
         .shadow-xl { box-shadow: var(--shadow-xl); }
 
-        /* Styles for Chatbot Modal and FAB */
+        /* --- STYLES UNTUK CHATBOT (VERSI PERBAIKAN) --- */
+
+        /* Tombol Ikon Chatbot (Floating Action Button) */
         .chatbot-fab {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--emerald-600);
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-emerald);
             color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
             box-shadow: var(--shadow-xl);
+            cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 9999;
-            border: none;
+            z-index: 10000; /* Z-index tinggi untuk tombol */
+            border: 2px solid white;
         }
 
         .chatbot-fab:hover {
-            background-color: var(--emerald-700);
-            transform: scale(1.1);
+            transform: scale(1.08);
+            box-shadow: var(--shadow-2xl);
         }
 
+        .chatbot-fab img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        /* Modal Chatbot */
         .chatbot-modal {
-            display: none;
+            display: none; /* Defaultnya tersembunyi */
             position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .chatbot-modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10001; /* Z-index LEBIH TINGGI dari tombolnya */
+            bottom: 110px;
+            right: 30px;
             width: 90%;
             max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            animation: slideUp 0.3s ease-out;
+            height: 70vh;
+            max-height: 550px;
+            background-color: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-2xl);
+            transform-origin: bottom right;
+            animation: fadeInScale 0.3s ease-out;
+            overflow: hidden; /* Penting agar konten di dalam tidak keluar dari border-radius */
         }
 
-        .chatbot-close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            align-self: flex-end;
-            border: none;
+        .chatbot-modal.is-visible {
+            display: flex; /* Tampilkan modal jika memiliki class is-visible */
+            flex-direction: column;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .chatbot-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chatbot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) var(--space-6);
+            background: var(--gradient-emerald);
+            color: white;
+            flex-shrink: 0; /* Mencegah header menyusut */
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: var(--text-lg);
+            font-weight: 600;
+        }
+
+        .close-chatbot-button {
             background: none;
-        }
-
-        .chatbot-close-button:hover,
-        .chatbot-close-button:focus {
-            color: #000;
-            text-decoration: none;
+            border: none;
+            color: white;
+            font-size: var(--text-2xl);
             cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .close-chatbot-button:hover {
+            transform: scale(1.2);
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .chat-container {
+        #chat-container {
             flex-grow: 1;
-            padding: 20px;
+            padding: var(--space-4);
             overflow-y: auto;
-            border-bottom: 1px solid #ddd;
+            background-color: var(--slate-50);
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-height: 400px;
+            gap: var(--space-4);
         }
 
-        .input-container {
+        /* Styling untuk Bubble Chat (User & Bot) */
+        .message {
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--border-radius-lg);
+            max-width: 85%;
+            font-size: var(--text-base);
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background-color: var(--emerald-500);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: var(--space-1);
+        }
+
+        .bot-message-wrapper {
             display: flex;
-            padding-top: 10px;
+            align-items: flex-end;
+            gap: var(--space-2);
+            align-self: flex-start;
+        }
+
+        .mascot-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: white;
+            border: 2px solid var(--emerald-200);
+        }
+
+        .bot-message {
+            background-color: white;
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+            border-bottom-left-radius: var(--space-1);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+            padding: 0 var(--space-4); /* Diberi padding agar tidak menempel */
+        }
+
+        .quick-reply {
+            padding: var(--space-2) var(--space-3);
+            background-color: var(--emerald-100);
+            color: var(--emerald-700);
+            border: 1px solid var(--emerald-300);
+            border-radius: var(--border-radius-xl);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-reply:hover {
+            background-color: var(--emerald-200);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+
+        /* Input Area Chatbot */
+        .chatbot-input {
+            display: flex;
+            padding: var(--space-4);
+            background-color: white;
+            border-top: 1px solid var(--slate-200);
+            flex-shrink: 0; /* Mencegah input area menyusut */
+            gap: var(--space-2);
         }
 
         #user-input {
             flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            margin-right: 10px;
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--slate-300);
+            border-radius: var(--border-radius-xl);
+            font-size: var(--text-base);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        #send-button {
-            background-color: var(--emerald-600);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
+        #user-input:focus {
+            outline: none;
+            border-color: var(--emerald-600);
+            box-shadow: 0 0 0 2px var(--emerald-100);
         }
 
-        /* Message styles */
-        .message {
-            max-width: 80%;
-            padding: 10px;
-            border-radius: 15px;
-            word-wrap: break-word;
-        }
-
-        .user-message {
-            background-color: #e0f2f1;
-            align-self: flex-end;
-        }
-
-        .bot-message {
-            background-color: #f1f1f1;
-            align-self: flex-start;
-        }
-
-        .header .logo {
-            height: 40px;
-        }
-
-        .header {
+        .send-button {
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .clear-chat-button {
-            background: none;
+            justify-content: center;
+            border-radius: 50%;
             border: none;
-            color: #aaa;
             cursor: pointer;
-            font-size: 14px;
+            transition: all 0.2s ease;
+            background-color: var(--emerald-600);
+            color: white;
+            font-size: var(--text-lg);
+            flex-shrink: 0;
         }
-        .clear-chat-button:hover {
-            color: #000;
+
+        .send-button:hover {
+            background-color: var(--emerald-700);
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .chatbot-modal {
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                max-height: 100%;
+                border-radius: 0;
+            }
+            .chatbot-fab {
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -1584,6 +1671,29 @@
         </section>
     </main>
 
+    <button class="chatbot-fab" id="chatbot-fab" aria-label="Buka Chat Temal">
+        <img src="{{ asset('asset/maskot_amallan.png') }}" alt="Chatbot Icon">
+    </button>
+    
+    <div id="chatbot-modal" class="chatbot-modal">
+        <div class="chatbot-content">
+            <div class="chatbot-header">
+                <h3>💬 Chat Temal</h3>
+                <button class="close-chatbot-button" id="close-chatbot-button" aria-label="Tutup Chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chat-container">
+                </div>
+            <div class="chatbot-input">
+                <input type="text" id="user-input" placeholder="Ketik pesan Anda..." autocomplete="off">
+                <button id="send-button" class="send-button" aria-label="Kirim Pesan">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1631,189 +1741,8 @@
             </div>
         </div>
     </footer>
-
-    <div id="chatbot-modal" class="chatbot-modal">
-        <div class="chatbot-modal-content">
-            <div class="header">
-                <img src="{{ asset('asset/logo-amallan.png') }}" alt="Logo Amallan" class="logo">
-                <h1>Chatbot Temal</h1>
-                <button class="chatbot-close-button">&times;</button>
-            </div>
-            <div class="chat-container" id="chat-container">
-                <div class="message bot-message">
-                    <p>Halo! Saya Temal, chatbot Amallan. Ada yang bisa saya bantu?</p>
-                </div>
-            </div>
-            <div class="input-container">
-                <input type="text" id="user-input" placeholder="Tanyakan tentang Amallan..." autocomplete="off">
-                <button id="send-button">Kirim</button>
-            </div>
-        </div>
-    </div>
     
-    <button class="chatbot-fab" onclick="document.getElementById('chatbot-modal').style.display='flex'">
-        <i class="fas fa-robot"></i>
-    </button>
-
-    <script>
-        // === Enhanced Header Script ===
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const header = document.querySelector('header');
-            const chatbotModal = document.getElementById('chatbot-modal');
-            const chatbotCloseButton = chatbotModal.querySelector('.chatbot-close-button');
-            const chatContainer = document.getElementById('chat-container');
-            const userInput = document.getElementById('user-input');
-            const sendButton = document.getElementById('send-button');
-
-            // Mobile menu toggle
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    const icon = menuToggle.querySelector('i');
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                });
-            }
-
-            // Close menu when a link is clicked
-            mainNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            });
-
-            // Header scroll effects
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                if (scrollTop > lastScrollTop && scrollTop > 200) {
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    header.style.transform = 'translateY(0)';
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            }, { passive: true });
-
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = target.offsetTop - headerHeight - 20;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Newsletter form submission
-            const newsletterForm = document.querySelector('footer form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = this.querySelector('input[type="email"]').value;
-                    alert('Terima kasih! Anda telah berlangganan newsletter kami.');
-                    this.reset();
-                });
-            }
-
-            // Chatbot functionality
-            chatbotCloseButton.onclick = function() {
-                chatbotModal.style.display = 'none';
-            }
-            window.onclick = function(event) {
-                if (event.target == chatbotModal) {
-                    chatbotModal.style.display = 'none';
-                }
-            }
-
-            sendButton.addEventListener('click', sendMessage);
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-
-            function sendMessage() {
-                const userText = userInput.value.trim();
-                if (userText === '') return;
-
-                // Display user message
-                const userMessageDiv = document.createElement('div');
-                userMessageDiv.className = 'message user-message';
-                userMessageDiv.innerHTML = `<p>${userText}</p>`;
-                chatContainer.appendChild(userMessageDiv);
-
-                userInput.value = '';
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-
-                // Simulate bot response
-                setTimeout(() => {
-                    const botMessageDiv = document.createElement('div');
-                    botMessageDiv.className = 'message bot-message';
-                    botMessageDiv.innerHTML = `<p>${getBotResponse(userText)}</p>`;
-                    chatContainer.appendChild(botMessageDiv);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                }, 1000);
-            }
-
-            function getBotResponse(input) {
-                const lowerInput = input.toLowerCase();
-                if (lowerInput.includes('halo') || lowerInput.includes('hai')) {
-                    return 'Halo! Ada yang bisa saya bantu?';
-                } else if (lowerInput.includes('tentang amallan')) {
-                    return 'Amallan.id adalah sebuah inisiatif mulia yang berdedikasi untuk mendukung pembangunan dan pengembangan pesantren di seluruh Indonesia. Kami percaya bahwa pesantren adalah pilar penting dalam mencetak generasi Qur\'ani yang tidak hanya unggul dalam ilmu agama, tetapi juga mandiri dan berdaya saing di era modern.';
-                } else if (lowerInput.includes('program')) {
-                    return 'Kami memiliki program Pembangunan & Renovasi, Pengadaan Sarana Belajar, Beasiswa Santri, dan Pemberdayaan Ekonomi Pesantren. Silakan kunjungi halaman Program untuk informasi lebih detail.';
-                } else if (lowerInput.includes('donasi')) {
-                    return 'Anda bisa berdonasi melalui platform donasi kami di donasi.amallan.id. Setiap donasi Anda akan langsung disalurkan untuk kebutuhan vital pesantren.';
-                } else if (lowerInput.includes('kontak')) {
-                    return 'Anda bisa menghubungi kami melalui email: amallanindonesia@gmail.com, atau WhatsApp di 0821 5939 2448.';
-                } else {
-                    return 'Maaf, saya tidak mengerti. Silakan ajukan pertanyaan lain seputar Amallan.id.';
-                }
-            }
-
-            // Clear chat functionality
-            document.querySelector('.clear-chat-button').addEventListener('click', () => {
-                chatContainer.innerHTML = `
-                    <div class="message bot-message">
-                        <p>Halo! Saya Temal, chatbot Amallan. Ada yang bisa saya bantu?</p>
-                    </div>
-                `;
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/amallan.js') }}"></script>
 </body>
 </html>
