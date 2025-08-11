@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amallan.id - Membangun Pesantren Mandiri</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <link rel="stylesheet" href="{{ asset('css/amallan.css') }}">
-    
     <style>
         :root {
-            /* Enhanced Green Color Palette */
+            /* Enhanced Green Color Palette - Mempertahankan warna asli */
             --emerald-50: #ecfdf5;
             --emerald-100: #d1fae5;
             --emerald-200: #a7f3d0;
@@ -33,7 +31,7 @@
             --green-500: #22c55e;
             --green-600: #16a34a;
             
-            /* Neutral Colors */
+            /* Neutral Colors - Improved contrast */
             --slate-50: #f8fafc;
             --slate-100: #f1f5f9;
             --slate-200: #e2e8f0;
@@ -46,79 +44,178 @@
             --slate-900: #0f172a;
             --white: #ffffff;
             
-            /* Gradients */
+            /* Gradients - Mempertahankan gradien asli */
             --gradient-emerald: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
             --gradient-emerald-light: linear-gradient(135deg, var(--emerald-500), var(--teal-500));
             --gradient-emerald-dark: linear-gradient(135deg, var(--emerald-800), var(--teal-800));
             
-            /* Shadows */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* Enhanced Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             
-            /* Effects */
-            --blur-backdrop: blur(16px);
+            /* Enhanced Effects */
+            --blur-backdrop: blur(20px);
+            --border-radius-sm: 0.375rem;
+            --border-radius: 0.5rem;
+            --border-radius-md: 0.75rem;
+            --border-radius-lg: 1rem;
+            --border-radius-xl: 1.5rem;
+            
+            /* Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            --space-32: 8rem;
         }
 
-        /* Enhanced Body Styling */
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
             background: linear-gradient(135deg, var(--slate-50) 0%, var(--emerald-50) 100%);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--slate-800);
+            overflow-x: hidden;
         }
 
-        /* Enhanced Header */
+        /* Enhanced Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-4);
+        }
+
+        h1 { font-size: var(--text-5xl); }
+        h2 { font-size: var(--text-4xl); }
+        h3 { font-size: var(--text-2xl); }
+        h4 { font-size: var(--text-xl); }
+        h5 { font-size: var(--text-lg); }
+        h6 { font-size: var(--text-base); }
+
+        p {
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+        }
+
+        /* Container System */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        /* === HEADER YANG DIPERBAIKI === */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: var(--blur-backdrop);
             -webkit-backdrop-filter: var(--blur-backdrop);
-            box-shadow: var(--shadow-lg);
-            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid var(--emerald-100);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            padding: var(--space-3) 0;
         }
 
-        .header-logo-new {
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo-new img {
+            height: 45px;
+            width: auto;
             transition: transform 0.3s ease;
         }
-
-        .header-logo-new:hover {
+        .header-logo-new:hover img {
             transform: scale(1.05);
         }
 
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-2);
+            align-items: center;
+        }
+
         .main-nav ul li a {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .main-nav ul li a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .main-nav ul li a:hover::before {
-            left: 100%;
+            padding: var(--space-2) var(--space-4);
+            color: var(--slate-700);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .main-nav ul li a:hover {
             color: var(--emerald-700);
-            background: var(--emerald-50);
-            border-radius: 0.75rem;
-            transform: translateY(-1px);
+            background-color: var(--emerald-50);
+        }
+
+        /* Actions container for buttons */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
         }
 
         .button-hubungi {
             background: var(--gradient-emerald);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
+            color: var(--white);
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
         }
 
         .button-hubungi:hover {
@@ -127,11 +224,100 @@
             background: var(--gradient-emerald-light);
         }
 
+        /* Hide the mobile-only button on desktop */
+        .header-button-mobile {
+            display: none;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: var(--text-2xl);
+            color: var(--slate-700);
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .menu-toggle:hover {
+            background: var(--emerald-50);
+            color: var(--emerald-700);
+        }
+
+        /* === Responsive Header (DIPERBAIKI) === */
+        @media (max-width: 1024px) {
+            .main-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            
+            /* Mobile navigation panel */
+            .main-nav.active {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100%;
+                background: var(--white);
+                box-shadow: var(--shadow-2xl);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: var(--space-16) var(--space-8);
+                animation: slideIn 0.3s ease-out;
+            }
+
+            @keyframes slideIn {
+                from { transform: translateX(100%); }
+                to { transform: translateX(0); }
+            }
+
+            .main-nav.active ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: var(--space-4);
+            }
+
+            .main-nav.active ul li a {
+                display: block;
+                width: 100%;
+                padding: var(--space-3);
+                font-size: var(--text-lg);
+            }
+
+            .header-actions .button-hubungi {
+                display: none;
+            }
+
+            /* Show donation button inside mobile menu */
+            .header-button-mobile {
+                display: block;
+                margin-top: var(--space-8);
+                width: 100%;
+            }
+            .header-button-mobile .button-hubungi {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* Enhanced Hero Section */
         #hero {
             background: var(--gradient-emerald);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
         }
 
         #hero::before {
@@ -141,61 +327,125 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                         radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: center;
+        }
+
+        .hero-text {
+            color: var(--white);
         }
 
         #hero h1 {
+            font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--space-6);
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
+        #hero p {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-8);
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
         .hero-buttons .button {
-            transition: all 0.3s ease;
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--border-radius-xl);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-lg);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-buttons .button.white {
+            background: var(--white);
+            color: var(--emerald-700);
         }
 
         .hero-buttons .button.white:hover {
             background: var(--emerald-50);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2xl);
         }
 
         .hero-buttons .button.green {
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
+            color: var(--white);
+            backdrop-filter: blur(10px);
         }
 
         .hero-buttons .button.green:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2xl);
         }
 
         .hero-image-container {
             position: relative;
             z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero-image-container img {
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+            border-radius: var(--border-radius-xl);
         }
 
         /* Enhanced Section Styling */
+        .section-padding {
+            padding: var(--space-24) 0;
+        }
+
         .section-heading {
             background: var(--gradient-emerald);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .section-description {
+            font-size: var(--text-xl);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-16);
+            color: var(--slate-600);
+            line-height: 1.7;
         }
 
         /* Enhanced About Section */
@@ -212,13 +462,39 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
 
         .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: center;
             position: relative;
             z-index: 2;
+        }
+
+        .about-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image-container img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 50%;
+            border: 15px solid rgba(16, 185, 129, 0.2);
+            box-shadow: var(--shadow-2xl);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image-container img:hover {
+            transform: scale(1.02);
         }
 
         .about-text-content h2 {
@@ -226,25 +502,89 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+            text-align: left;
+            margin-bottom: var(--space-6);
+        }
+
+        .about-text-content p {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--slate-700);
+            margin-bottom: var(--space-6);
         }
 
         .info-box {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(16, 185, 129, 0.2);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--border-radius-xl);
+            padding: var(--space-6);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-5);
+            transition: all 0.3s ease;
         }
 
-        .info-icon {
+        .info-box:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .info-box .info-icon {
             background: var(--gradient-emerald);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: var(--text-base);
+            color: var(--slate-700);
+            line-height: 1.6;
+        }
+
+        .info-box p strong {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--emerald-700);
         }
 
         /* Enhanced Program Cards */
+        #program-utama {
+            background: linear-gradient(135deg, var(--slate-100) 0%, var(--emerald-100) 100%);
+        }
+
+        .program-card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .program-card {
-            transition: all 0.3s ease;
+            background: var(--white);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-8);
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(16, 185, 129, 0.1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .program-card::before {
@@ -259,7 +599,7 @@
         }
 
         .program-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-2xl);
             border-color: var(--emerald-300);
         }
@@ -267,6 +607,38 @@
         .icon-circle {
             background: var(--gradient-emerald);
             box-shadow: var(--shadow-lg);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+            flex-shrink: 0;
+            padding: var(--space-4);
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover .icon-circle {
+            transform: scale(1.1);
+        }
+
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .program-card h3 {
+            color: var(--emerald-700);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .program-card p {
+            color: var(--slate-600);
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* Enhanced Step Cards */
@@ -274,617 +646,1174 @@
             background: linear-gradient(135deg, var(--white) 0%, var(--emerald-50) 100%);
         }
 
+        .step-card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .step-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(16, 185, 129, 0.1);
+            background: var(--white);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-8);
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--slate-200);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .step-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
+            border-color: var(--emerald-300);
+        }
+
+        .step-number-circle {
+            background: var(--emerald-600);
+            color: var(--white);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+            flex-shrink: 0;
+            padding: var(--space-4);
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover .step-number-circle {
+            transform: scale(1.1);
+        }
+
+        .step-card h3 {
+            color: var(--emerald-700);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .step-card p {
+            color: var(--slate-600);
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* Enhanced Dampak Section */
+        #dampak-nyata {
+            background: linear-gradient(135deg, var(--emerald-50) 0%, var(--teal-50) 100%);
+        }
+
+        .dampak-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--space-8);
+            align-items: stretch;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            background: var(--white);
+        }
+
+        .dampak-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: var(--space-2);
+            padding: 0;
+        }
+
         .dampak-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
         .dampak-gallery img:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .dampak-info-card {
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(16, 185, 129, 0.1);
-        }
-
-        .dampak-info-card h3 {
-            color: var(--emerald-700);
-        }
-
-        .dampak-info-card ul li i {
-            color: var(--emerald-600);
-        }
-
-        /* Enhanced News Section */
-        .news-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(16, 185, 129, 0.1);
-        }
-
-        .news-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .news-card a {
-            color: var(--emerald-600);
-            transition: color 0.3s ease;
-        }
-
-        .news-card a:hover {
-            color: var(--emerald-700);
-        }
-
-        /* Enhanced Temal Section */
-        #kenalan-temal {
-            background: linear-gradient(135deg, var(--emerald-50), var(--teal-50));
-        }
-
-        .temal-container {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            box-shadow: var(--shadow-xl);
+            background: var(--emerald-50);
+            padding: var(--space-10);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        .temal-text-content h3 {
-            color: var(--emerald-700);
+        .dampak-info-card h3 {
+            color: var(--emerald-800);
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-6);
         }
 
-        .temal-tag {
-            background: var(--emerald-100);
-            color: var(--emerald-700);
+        .dampak-info-card p,
+        .dampak-info-card ul li {
+            font-size: var(--text-base);
+            color: var(--slate-700);
+            line-height: 1.7;
         }
 
-        /* Enhanced Bergabung Section */
-        #bergabung-gerakan {
-            background: var(--gradient-emerald);
+        .dampak-info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-4) 0;
+        }
+
+        .dampak-info-card ul li {
+            position: relative;
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-2);
+        }
+
+        .dampak-info-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--emerald-600);
+            font-weight: bold;
+        }
+
+        .dampak-info-card ul li strong {
+            color: var(--emerald-700);
+            font-weight: 600;
+        }
+
+        /* Enhanced News Section */
+        #news-section {
+            background: linear-gradient(135deg, var(--white), var(--emerald-50));
+            padding: var(--space-24) 0;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            background: var(--white);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .news-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: var(--space-6);
+        }
+
+        .news-content h3 {
+            color: var(--emerald-800);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-3);
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: var(--slate-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+        }
+
+        .news-content .read-more {
+            color: var(--emerald-600);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .news-content .read-more:hover {
+            color: var(--emerald-800);
+            transform: translateX(4px);
+        }
+
+        /* Enhanced CTA Section */
+        #cta-section {
+            background: var(--gradient-emerald-dark);
+            color: var(--white);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        #bergabung-gerakan::before {
+        #cta-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
 
-        .gerakan-card-grid {
+        #cta-section .container {
             position: relative;
             z-index: 2;
         }
 
-        .gerakan-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        #cta-section h2 {
+            font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+            margin-bottom: var(--space-6);
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .gerakan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-2xl);
+        #cta-section p {
+            font-size: var(--text-xl);
+            max-width: 800px;
+            margin: 0 auto var(--space-10);
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        #cta-section .button {
             background: var(--white);
-        }
-
-        .gerakan-icon-container {
-            background: var(--gradient-emerald);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .gerakan-button {
-            background: var(--gradient-emerald);
-            transition: all 0.3s ease;
-        }
-
-        .gerakan-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hubungi-kami-container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .button-hubungi-kami-putih {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-        }
-
-        .button-hubungi-kami-putih:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Enhanced Contact Section */
-        .contact-section-padding {
-            background: linear-gradient(135deg, var(--slate-50) 0%, var(--emerald-50) 100%);
-        }
-
-        .contact-heading {
-            background: var(--gradient-emerald);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-info-new,
-        .contact-form-new {
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(16, 185, 129, 0.1);
-        }
-
-        .contact-box-title {
             color: var(--emerald-700);
+            padding: var(--space-5) var(--space-10);
+            border-radius: var(--border-radius-xl);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            border: none;
+            cursor: pointer;
         }
 
-        .contact-item-new {
-            background: var(--emerald-50);
+        #cta-section .button:hover {
+            background: var(--slate-100);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background: var(--slate-900);
+            color: var(--slate-300);
+            padding: var(--space-20) 0 var(--space-8);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-10);
+            margin-bottom: var(--space-10);
+        }
+
+        .footer-section h4 {
+            color: var(--emerald-400);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-5);
+        }
+
+        .footer-section p,
+        .footer-section ul li a {
+            color: var(--slate-400);
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: var(--space-2);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--emerald-400);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .social-links a {
+            color: var(--slate-400);
+            font-size: var(--text-2xl);
             transition: all 0.3s ease;
+            padding: var(--space-2);
+            border-radius: var(--border-radius);
         }
 
-        .contact-item-new:hover {
-            background: var(--emerald-100);
-            transform: translateX(5px);
-        }
-
-        .contact-item-new .text-content strong {
-            color: var(--emerald-700);
-        }
-
-        .contact-form-new input,
-        .contact-form-new textarea {
-            border: 2px solid var(--emerald-200);
-            transition: all 0.3s ease;
-        }
-
-        .contact-form-new input:focus,
-        .contact-form-new textarea:focus {
-            border-color: var(--emerald-500);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        .contact-form-new button {
-            background: var(--gradient-emerald);
-            transition: all 0.3s ease;
-        }
-
-        .contact-form-new button:hover {
+        .social-links a:hover {
+            color: var(--emerald-400);
+            background: rgba(16, 185, 129, 0.1);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
-        /* Animation Classes */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
+        .footer-section form {
+            margin-top: var(--space-4);
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        .footer-section input {
+            width: 100%;
+            padding: var(--space-4);
+            border-radius: var(--border-radius-md);
+            background: var(--slate-800);
+            border: 1px solid var(--slate-700);
+            color: var(--white);
+            margin-bottom: var(--space-3);
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-section input:focus {
+            outline: none;
+            border-color: var(--emerald-600);
+        }
+
+        .footer-section input::placeholder {
+            color: var(--slate-500);
+        }
+
+        .footer-section button {
+            width: 100%;
+            padding: var(--space-4);
+            background: var(--emerald-600);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section button:hover {
+            background: var(--emerald-700);
+            transform: translateY(-1px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--slate-700);
+            color: var(--slate-500);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-12);
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-12);
+                text-align: center;
+            }
+
+            .about-text-content h2 {
+                text-align: center;
+            }
+
+            .dampak-content {
+                grid-template-columns: 1fr;
+            }
+
+            .dampak-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                aspect-ratio: 16/9;
+            }
+
+            .program-card-grid,
+            .step-card-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Header scroll effect */
-        .header-scrolled {
-            background: rgba(255, 255, 255, 0.98) !important;
-            backdrop-filter: blur(20px) !important;
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: var(--blur-backdrop);
+                box-shadow: var(--shadow-xl);
+                border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
+                padding: var(--space-6);
+            }
+
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: var(--space-2);
+            }
+
+            .main-nav ul li a {
+                display: block;
+                text-align: center;
+                padding: var(--space-4);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .button-hubungi {
+                display: none;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-buttons .button {
+                flex: 1;
+                min-width: 200px;
+                justify-content: center;
+            }
+
+            .program-card-grid,
+            .step-card-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dampak-info-card {
+                padding: var(--space-6);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-section {
+                margin-bottom: var(--space-8);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--space-4);
+            }
+
+            .section-padding {
+                padding: var(--space-16) 0;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .about-image-container img {
+                width: 80%;
+            }
+
+            .info-box {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-4);
+            }
+
+            .dampak-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        .flex { display: flex; }
+        .flex-center { display: flex; justify-content: center; align-items: center; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .block { display: block; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .rounded { border-radius: var(--border-radius); }
+        .rounded-lg { border-radius: var(--border-radius-lg); }
+        .rounded-xl { border-radius: var(--border-radius-xl); }
+        .shadow { box-shadow: var(--shadow); }
+        .shadow-lg { box-shadow: var(--shadow-lg); }
+        .shadow-xl { box-shadow: var(--shadow-xl); }
+
+        /* Styles for Chatbot Modal and FAB */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--emerald-600);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            border: none;
+        }
+
+        .chatbot-fab:hover {
+            background-color: var(--emerald-700);
+            transform: scale(1.1);
+        }
+
+        .chatbot-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .chatbot-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .chatbot-close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            align-self: flex-end;
+            border: none;
+            background: none;
+        }
+
+        .chatbot-close-button:hover,
+        .chatbot-close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 400px;
+        }
+
+        .input-container {
+            display: flex;
+            padding-top: 10px;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        #send-button {
+            background-color: var(--emerald-600);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Message styles */
+        .message {
+            max-width: 80%;
+            padding: 10px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #e0f2f1;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+
+        .header .logo {
+            height: 40px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .clear-chat-button {
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .clear-chat-button:hover {
+            color: #000;
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-all duration-300 font-body">
-
+<body>
     <header>
-        <a href="#hero">
-            <img src="{{ asset('asset/Salinan dari Salinan dari Tambahkan judul (3).png') }}" alt="Logo Amallan" class="header-logo-new">
-        </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#hero">Beranda</a></li> <li><a href="#about-amallan">Tentang</a></li>
-                <li><a href="#program-utama">Program</a></li>
-                <li><a href="#dampak-nyata">Dampak</a></li>
-                <li><a href="#bergabung-gerakan">Bergabung</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </nav>
-        <a href="https://donasi.amallan.id" class="button-hubungi" target="_blank">Donasi Sekarang</a>
-        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo-new">
+                    <a href="/"><img src="{{ asset('asset/logo-amallan.png') }}" alt="Amallan.id Logo"></a>
+                </div>
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a href="#hero">Beranda</a></li>
+                        <li><a href="#about-amallan">Tentang Kami</a></li>
+                        <li><a href="#program-utama">Program</a></li>
+                        <li><a href="#how-it-works">Cara Kerja</a></li>
+                        <li><a href="#dampak-nyata">Dampak</a></li>
+                        <li><a href="#news-section">Berita</a></li>
+                        <li class="header-button-mobile"><a href="http://donasi.amallan.id" class="button-hubungi">Donasi Sekarang</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="http://donasi.amallan.id" class="button-hubungi">Donasi Sekarang</a>
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="close-btn" onclick="toggleMobileMenu()">&times;</button>
-        <ul>
-            <li><a href="#hero" onclick="toggleMobileMenu()">Beranda</a></li>
-            <li><a href="#about-amallan" onclick="toggleMobileMenu()">Tentang</a></li>
-            <li><a href="#program-utama" onclick="toggleMobileMenu()">Program</a></li>
-            <li><a href="#how-it-works" onclick="toggleMobileMenu()">Cara Kerja</a></li>
-            <li><a href="#dampak-nyata" onclick="toggleMobileMenu()">Dampak Nyata</a></li>
-            <li><a href="#contact" onclick="toggleMobileMenu()">Kontak</a></li>
-            <li><a href="https://donasi.amallan.id" class="button-hubungi" style="display: block; text-align: center; margin: 20px auto; width: calc(100% - 50px);" target="_blank">Donasi Sekarang</a></li>
-        </ul>
-    </div>
+    <main>
+        <section id="hero" class="section-padding">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="fade-in">Membangun Pesantren Mandiri Bersama Amallan.id</h1>
+                        <p class="fade-in">Bergabunglah dengan gerakan kebaikan untuk mendukung pembangunan dan pengembangan pesantren di seluruh Indonesia. Setiap donasi Anda adalah investasi untuk masa depan generasi Qur'ani yang mandiri dan berdaya.</p>
+                        <div class="hero-buttons fade-in">
+                            <a href="http://donasi.amallan.id" class="button white">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                Donasi Sekarang
+                            </a>
+                            <a href="#about-amallan" class="button green">
+                                <i class="fas fa-info-circle"></i>
+                                Pelajari Lebih Lanjut
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-container fade-in">
+                        <img src="{{ asset('asset/maskot_amallan.png') }}" alt="Pesantren Mandiri">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Membangun Pesantren Mandiri Bersama Amallan</h1>
-            <p>Mendampingi pondok pesantren di Indonesia menuju kemandirian melalui digitalisasi, pelatihan SDM, dan pendampingan unit usaha produktif.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="button white">Gabung Menjadi Sahabat Amal</a>
-                <a href="#contact" class="button green">Hubungi Kami</a>
+        <section id="about-amallan" class="section-padding">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image-container slide-in-left">
+                        <img src="{{ asset('asset/maskot_amallan_about.png') }}" alt="Tentang Amallan.id">
+                    </div>
+                    <div class="about-text-content slide-in-right">
+                        <h2>Tentang Amallan.id</h2>
+                        <p>Amallan.id adalah sebuah inisiatif mulia yang berdedikasi untuk mendukung pembangunan dan pengembangan pesantren di seluruh Indonesia. Kami percaya bahwa pesantren adalah pilar penting dalam mencetak generasi Qur'ani yang tidak hanya unggul dalam ilmu agama, tetapi juga mandiri dan berdaya saing di era modern.</p>
+                        <p>Melalui platform crowdfunding yang transparan dan akuntabel, kami mengajak Anda untuk menjadi bagian dari gerakan kebaikan ini. Setiap donasi yang Anda berikan akan langsung disalurkan untuk kebutuhan vital pesantren, mulai dari pembangunan fasilitas, pengadaan sarana belajar, hingga beasiswa bagi santri berprestasi.</p>
+                        <div class="info-box">
+                            <div class="info-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <p><strong>Visi Kami:</strong> Menjadi jembatan kebaikan yang menghubungkan para dermawan dengan pesantren, demi terwujudnya generasi Qur'ani yang mandiri dan berdaya.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="hero-image-container">
-            <img src="{{ asset('asset/maskot_amallan.png') }}" alt="Ilustrasi Amallan">
-        </div>
-    </section>
+        </section>
 
-    <section id="about-amallan" class="section-padding">
-        <div class="about-content">
-            <div class="about-image-container">
-                <img src="{{ asset('asset/maskot_amallan_about.png') }}" alt="Maskot Amallan dan Santri">
+        <section id="program-utama" class="section-padding">
+            <div class="container">
+                <h2 class="section-heading fade-in">Program Utama Kami</h2>
+                <p class="section-description fade-in">Kami memiliki beberapa program unggulan yang dirancang untuk memberikan dampak maksimal bagi pesantren dan santri.</p>
+                <div class="program-card-grid">
+                    <div class="program-card fade-in">
+                        <div class="icon-circle">
+                            <img src="{{ asset('asset/icon-pembangunan.png') }}" alt="Pembangunan Fasilitas">
+                        </div>
+                        <h3>Pembangunan & Renovasi</h3>
+                        <p>Mendukung pembangunan gedung baru, asrama, masjid, dan fasilitas penunjang lainnya untuk menciptakan lingkungan belajar yang nyaman dan kondusif.</p>
+                    </div>
+                    <div class="program-card fade-in">
+                        <div class="icon-circle">
+                            <img src="{{ asset('asset/icon-sarana.png') }}" alt="Pengadaan Sarana Belajar">
+                        </div>
+                        <h3>Pengadaan Sarana Belajar</h3>
+                        <p>Menyediakan Al-Qur'an, kitab kuning, buku pelajaran, perangkat komputer, dan alat peraga edukatif untuk menunjang proses belajar mengajar.</p>
+                    </div>
+                    <div class="program-card fade-in">
+                        <div class="icon-circle">
+                            <img src="{{ asset('asset/icon-beasiswa.png') }}" alt="Beasiswa Santri">
+                        </div>
+                        <h3>Beasiswa Santri</h3>
+                        <p>Memberikan bantuan biaya pendidikan bagi santri yatim, dhuafa, dan berprestasi agar mereka dapat terus menimba ilmu tanpa terkendala biaya.</p>
+                    </div>
+                    <div class="program-card fade-in">
+                        <div class="icon-circle">
+                            <img src="{{ asset('asset/icon-pemberdayaan.png') }}" alt="Pemberdayaan Ekonomi">
+                        </div>
+                        <h3>Pemberdayaan Ekonomi Pesantren</h3>
+                        <p>Mengembangkan unit usaha pesantren seperti pertanian, peternakan, atau kerajinan tangan untuk menciptakan kemandirian finansial pesantren.</p>
+                    </div>
+                </div>
             </div>
-            <div class="about-text-content">
-                <h2>Tentang Amallan</h2>
-                <p>Amallan adalah inisiatif sosial yang berfokus pada pendampingan pondok pesantren di Indonesia agar mandiri melalui digitalisasi, pelatihan SDM, dan pendampingan unit usaha produktif. Kami percaya bahwa pesantren adalah aset berharga bangsa yang perlu didukung dengan teknologi dan inovasi.</p>
-                
-                <p>Dengan semangat #TemanBeramal, kami mengajak seluruh elemen masyarakat untuk berkolaborasi membangun ekosistem pesantren yang mandiri, modern, namun tetap menjaga nilai-nilai keislaman yang luhur.</p>
+        </section>
 
-                <div class="info-box">
-                    <div class="info-icon">
-                        <i class="fas fa-info"></i>
+        <section id="how-it-works" class="section-padding">
+            <div class="container">
+                <h2 class="section-heading fade-in">Cara Kerja Kami</h2>
+                <p class="section-description fade-in">Proses yang transparan dan akuntabel untuk memastikan donasi Anda tepat sasaran dan memberikan dampak maksimal.</p>
+                <div class="step-card-grid">
+                    <div class="step-card fade-in">
+                        <div class="step-number-circle">1</div>
+                        <h3>Identifikasi Kebutuhan</h3>
+                        <p>Kami melakukan survei mendalam untuk mengidentifikasi pesantren yang membutuhkan bantuan dan jenis bantuan yang diperlukan.</p>
                     </div>
-                    <p><strong>Temal, Teman Beramal</strong> <br>Maskot kami yang mewakili semangat berbagi dan kolaborasi</p>
+                    <div class="step-card fade-in">
+                        <div class="step-number-circle">2</div>
+                        <h3>Verifikasi & Validasi</h3>
+                        <p>Tim kami melakukan verifikasi langsung ke lokasi untuk memastikan keabsahan dan urgensi kebutuhan pesantren.</p>
+                    </div>
+                    <div class="step-card fade-in">
+                        <div class="step-number-circle">3</div>
+                        <h3>Penggalangan Dana</h3>
+                        <p>Kami membuat kampanye penggalangan dana yang transparan dengan target yang jelas dan timeline yang realistis.</p>
+                    </div>
+                    <div class="step-card fade-in">
+                        <div class="step-number-circle">4</div>
+                        <h3>Penyaluran & Monitoring</h3>
+                        <p>Dana yang terkumpul disalurkan langsung ke pesantren dengan monitoring ketat dan laporan berkala kepada donatur.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="program-utama" class="section-padding">
-        <h2 class="section-heading">Program Utama</h2>
-        <p class="section-description">Empat pilar program kami untuk mendukung kemandirian pesantren di era digital</p>
-        <div class="program-card-grid">
-            <div class="program-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('asset/icon3.png') }}" alt="Digitalisasi Manajemen Pesantren Icon Komputer">
-                </div>
-                <h3>Digitalisasi Manajemen Pesantren</h3>
-                <p>Sistem manajemen digital untuk administrasi, keuangan, dan akademik pesantren yang terintegrasi.</p>
-            </div>
-            <div class="program-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('asset/icon2.png') }}" alt="Pendampingan Unit Usaha Produktif Icon Dollar">
-                </div>
-                <h3>Pendampingan Unit Usaha Produktif</h3>
-                <p>Membantu pesantren mengembangkan unit usaha yang berkelanjutan untuk mendukung kemandirian ekonomi.</p>
-            </div>
-            <div class="program-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('asset/icon 4.png') }}" alt="Pelatihan SDM Pesantren Icon Buku">
-                </div>
-                <h3>Pelatihan SDM Pesantren</h3>
-                <p>Program peningkatan kapasitas ustadz, santri, dan pengelola pesantren dalam bidang teknologi dan kewirausahaan.</p>
-            </div>
-            <div class="program-card">
-                <div class="icon-circle">
-                    <img src="{{ asset('asset/icon 1.png') }}" alt="Platform Donasi & Crowdfunding Icon Hati">
-                </div>
-                <h3>Platform Donasi & Crowdfunding</h3>
-                <p>Menghubungkan pesantren dengan donatur dan pendukung melalui platform digital yang transparan dan akuntabel.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section id="how-it-works" class="section-padding">
-        <h2 class="section-heading">Bagaimana Amallan Bekerja</h2>
-        <p class="section-description">Proses kami dalam mendampingi pesantren menuju kemandirian</p>
-        <div class="step-card-grid">
-            <div class="step-card">
-                <div class="step-number-circle">
-                    <img src="{{ asset('asset/num1.png') }}" alt="Langkah 1: Identifikasi Pesantren">
-                </div>
-                <h3>Identifikasi Pesantren</h3>
-                <p>Memetakan kebutuhan dan potensi pesantren mitra untuk pengembangan program yang tepat sasaran.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number-circle">
-                    <img src="{{ asset('asset/num2.png') }}" alt="Langkah 2: Digitalisasi Sistem">
-                </div>
-                <h3>Digitalisasi Sistem</h3>
-                <p>Implementasi sistem digital untuk manajemen pesantren yang efektif dan efisien.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number-circle">
-                    <img src="{{ asset('asset/num3.png') }}" alt="Langkah 3: Pemberdayaan Ekonomi">
-                </div>
-                <h3>Pemberdayaan Ekonomi</h3>
-                <p>Pendampingan pengembangan unit usaha produktif dan pelatihan kewirausahaan.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number-circle">
-                    <img src="{{ asset('asset/num4.png') }}" alt="Langkah 4: Penggalangan Dukungan">
-                </div>
-                <h3>Penggalangan Dukungan</h3>
-                <p>Menghubungkan pesantren dengan jaringan donatur dan pendukung untuk keberlanjutan program.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section id="dampak-nyata" class="section-padding">
-        <h2 class="section-heading">Dampak Nyata</h2>
-        <p class="section-description">Kisah sukses pesantren yang telah bermitra dengan Amallan</p>
-        <div class="dampak-content">
-            <div class="dampak-gallery">
-                <img src="{{ asset('asset/darulfikri1.png') }}" alt="Pondok Pesantren Darul Fikri - Gerbang Utama">
-                <img src="{{ asset('asset/darulfikri2.png') }}" alt="Pondok Pesantren Darul Fikri - Area Persawahan">
-                <img src="{{ asset('asset/darulfikri3.png') }}" alt="Pondok Pesantren Darul Fikri - Kebun Anggur">
-                <img src="{{ asset('asset/darulfikri4.png') }}" alt="Pondok Pesantren Darul Fikri - Santri dan Bangunan">
-            </div>
-            <div class="dampak-info-card">
-                <h3>Pondok Pesantren Darul Fikri</h3>
-                <p>Sebelum bermitra dengan Amallan, Pondok Pesantren Darul Fikri menghadapi tantangan dalam manajemen administrasi dan keuangan yang masih manual. Selain itu, potensi ekonomi pesantren belum terkelola dengan optimal.</p>
-                <p>Setelah 1 tahun bermitra dengan Amallan:</p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Sistem administrasi dan keuangan terdigitalisasi, meningkatkan efisiensi 70%</li>
-                    <li><i class="fas fa-check-circle"></i> Unit usaha produksi makanan ringan berkembang dan memasarkan produk secara online</li>
-                    <li><i class="fas fa-check-circle"></i> 25 santri terlatih dalam keterampilan digital dan kewirausahaan</li>
-                    <li><i class="fas fa-check-circle"></i> Pendapatan pesantren meningkat 40% dari unit usaha produktif</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="kenalan-temal" class="section-padding">
-        <h2 class="section-heading">Kenalan dengan Temal</h2>
-        <p class="section-description">Maskot Amallan yang selalu siap menemani perjalanan kebaikan</p>
-        <div class="temal-container">
-            <div class="temal-text-content">
-                <h3>Temal, Teman Beramal</h3>
-                <p>Temal adalah maskot Amallan yang mewakili semangat berbagi dan kolaborasi. Dengan senyum ramah dan tangan terbuka, Temal selalu siap mengajak semua kalangan untuk bergabung dalam gerakan kebaikan.</p>
-                <p>Temal hadir sebagai simbol bahwa beramal dan berbuat baik itu menyenangkan, terutama ketika dilakukan bersama-sama sebagai sebuah komunitas.</p>
-                <div class="temal-tags">
-                    <div class="temal-tag">
-                        <i class="fas fa-check-circle"></i> Ramah
+        <section id="dampak-nyata" class="section-padding">
+            <div class="container">
+                <h2 class="section-heading fade-in">Dampak Nyata yang Telah Kami Capai</h2>
+                <p class="section-description fade-in">Berkat dukungan para dermawan, kami telah berhasil memberikan dampak positif bagi ribuan santri dan puluhan pesantren di Indonesia.</p>
+                <div class="dampak-content fade-in">
+                    <div class="dampak-gallery">
+                        <img src="{{ asset('asset/dampak-1.png') }}" alt="Pembangunan Asrama">
+                        <img src="{{ asset('asset/dampak-2.png') }}" alt="Santri Belajar">
+                        <img src="{{ asset('asset/dampak-3.png') }}" alt="Fasilitas Baru">
+                        <img src="{{ asset('asset/dampak-4.png') }}" alt="Kegiatan Pesantren">
                     </div>
-                    <div class="temal-tag">
-                        <i class="fas fa-check-circle"></i> Inspiratif
-                    </div>
-                    <div class="temal-tag">
-                        <i class="fas fa-check-circle"></i> Kolaboratif
+                    <div class="dampak-info-card">
+                        <h3>Pencapaian Kami</h3>
+                        <p>Dalam 3 tahun terakhir, Amallan.id telah berhasil:</p>
+                        <ul>
+                            <li><strong>25+ Pesantren</strong> telah menerima bantuan pembangunan dan renovasi fasilitas</li>
+                            <li><strong>500+ Santri</strong> mendapat beasiswa pendidikan penuh</li>
+                            <li><strong>15+ Provinsi</strong> di Indonesia telah merasakan dampak program kami</li>
+                            <li><strong>Rp 2.5 Miliar+</strong> dana telah tersalurkan dengan transparansi penuh</li>
+                            <li><strong>10+ Unit Usaha</strong> pesantren telah dikembangkan untuk kemandirian ekonomi</li>
+                        </ul>
+                        <p>Setiap donasi yang Anda berikan bukan hanya membangun fisik pesantren, tetapi juga membangun masa depan generasi Qur'ani yang akan menjadi pemimpin umat.</p>
                     </div>
                 </div>
             </div>
-            <div class="temal-image-container">
-                <img src="{{ asset('asset/kenalan_temal_maskot.png') }}" alt="Maskot Amallan bernama Temal">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="bergabung-gerakan" class="section-padding">
-        <h2 class="section-heading">Bergabung dengan Gerakan Kebaikan</h2>
-        <p class="section-description">Ada banyak cara untuk berkontribusi dalam gerakan digitalisasi dan kemandirian pesantren</p>
-        <div class="gerakan-card-grid">
-            <div class="gerakan-card">
-                <div class="gerakan-icon-container">
-                    <img src="{{ asset('asset/icon_donasi.png') }}" alt="Ikon Donasi">
+        <section id="news-section" class="section-padding">
+            <div class="container">
+                <h2 class="section-heading fade-in">Berita & Update Terbaru</h2>
+                <p class="section-description fade-in">Ikuti perkembangan terbaru dari program-program kami dan dampak yang telah dicapai.</p>
+                <div class="news-grid">
+                    @foreach ($news as $item)
+                        <article class="news-item fade-in">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
+                            <div class="news-content">
+                                <h3>{{ $item->title }}</h3>
+                                <p>{{ Str::limit(strip_tags($item->content), 150) }}</p>
+                                <a href="{{ route('news.show', $item->slug) }}" class="read-more">
+                                    Baca Selengkapnya
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
-                <h3>Donasi</h3>
-                <p>Dukung program-program Amallan melalui donasi untuk membantu lebih banyak pesantren mencapai kemandirian.</p>
-                <a href="#donasi-page" class="gerakan-button">Donasi Sekarang</a>
             </div>
-            <div class="gerakan-card">
-                <div class="gerakan-icon-container">
-                    <img src="{{ asset('asset/icon_kolaborasi.png') }}" alt="Ikon Kolaborasi">
-                </div>
-                <h3>Kolaborasi</h3>
-                <p>Ajak organisasi atau perusahaan Anda untuk berkolaborasi dalam program pemberdayaan pesantren.</p>
-                <a href="#kolaborasi-page" class="gerakan-button">Ajukan Kolaborasi</a>
-            </div>
-            <div class="gerakan-card">
-                <div class="gerakan-icon-container">
-                    <img src="{{ asset('asset/icon_relawan.png') }}" alt="Ikon Jadi Relawan">
-                </div>
-                <h3>Jadi Relawan</h3>
-                <p>Kontribusikan waktu, tenaga, dan keahlian Anda untuk membantu pesantren berkembang.</p>
-                <a href="#relawan-page" class="gerakan-button">Gabung Sekarang</a>
-            </div>
-        </div>
-        <div class="hubungi-kami-container">
-           <a href="#contact" class="button-hubungi-kami-putih">Hubungi Kami</a>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact-section-padding">
-        <h2 class="contact-heading">Kontak & Sosial Media</h2>
-        <p class="contact-subheading">Hubungi kami untuk informasi lebih lanjut atau kolaborasi</p>
-        
-        <div class="contact-content-new">
-            <div class="contact-info-new">
-                <h3 class="contact-box-title">Hubungi Kami</h3>
-                <div class="contact-item-new">
-                    <img src="{{ asset('asset/icon_email.png') }}" alt="Email Icon">
-                    <div class="text-content">
-                        <strong>Email</strong>
-                        <p>amallanindonesia@gmail.com</p>
-                    </div>
-                </div>
-                <div class="contact-item-new">
-                    <img src="{{ asset('asset/icon_whatsapp.png') }}" alt="WhatsApp Icon">
-                    <div class="text-content">
-                        <strong>WhatsApp</strong>
-                        <p>0821 5939 2448</p>
-                    </div>
-                </div>
-                <div class="contact-item-new">
-                    <img src="{{ asset('asset/icon_website.png') }}" alt="Website Icon">
-                    <div class="text-content">
-                        <strong>Website</strong>
-                        <p>www.amallan.id</p>
-                    </div>
-                </div>
-                <div class="contact-item-new">
-                    <img src="{{ asset('asset/icon_alamat.png') }}" alt="Alamat Icon">
-                    <div class="text-content">
-                        <strong>Alamat</strong>
-                        <p>Jl. HM Suwignyo Gg. Margodadirejo 1 No.12A, Kota Pontianak, Kalbar</p>
-                    </div>
-                </div>
+        <section id="cta-section" class="section-padding">
+            <div class="container">
+                <h2 class="fade-in">Mari Bersama Membangun Masa Depan Generasi Qur'ani</h2>
+                <p class="fade-in">Setiap donasi Anda, sekecil apapun, memiliki dampak besar bagi masa depan pendidikan Islam di Indonesia. Bergabunglah dengan ribuan dermawan lainnya dalam gerakan kebaikan ini.</p>
+                <a href="http://donasi.amallan.id" class="button fade-in">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    Mulai Berdonasi Sekarang
+                </a>
             </div>
+        </section>
+    </main>
 
-            <div class="contact-form-new">
-                <h3 class="contact-box-title">Kirim Pesan</h3>
-                <form id="contact-form-new" action="https://formspree.io/f/mblyaozw" method="POST">
-                    <div class="form-group">
-                        <label for="name-new">Nama</label>
-                        <input type="text" id="name-new" name="Nama" placeholder="" required>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Amallan.id</h4>
+                    <p>Platform crowdfunding terpercaya untuk mendukung pembangunan dan pengembangan pesantren di seluruh Indonesia. Bersama kita wujudkan generasi Qur'ani yang mandiri dan berdaya.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <div class="form-group">
-                        <label for="email-new">Email</label>
-                        <input type="email" id="email-new" name="Email" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="wa-new">WA</label>
-                        <input type="tel" id="wa-new" name="WhatsApp" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-new">Pesan</label>
-                        <textarea id="message-new" name="Pesan" rows="4" placeholder="" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">Kirim Pesan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <footer id="footer">
-        <div class="footer-grid">
-            <div class="footer-col footer-logo-col">
-                <img src="{{ asset('asset/Salinan dari Salinan dari Tambahkan judul (3).png') }}" alt="Logo Amallan" class="footer-logo-new">
-                <p>Gerakan Digitalisasi dan Kemandirian Pesantren.</p>
-                <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/amallan.id" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://wa.me/6285198835192" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Kontak Kami</h3>
-                <div class="footer-contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Jl. HM Suwignyo Gg. Margodadirejo 1 No.12A, Kota Pontianak, Kalbar</p>
+                <div class="footer-section">
+                    <h4>Program Kami</h4>
+                    <ul>
+                        <li><a href="#program-utama">Pembangunan & Renovasi</a></li>
+                        <li><a href="#program-utama">Pengadaan Sarana Belajar</a></li>
+                        <li><a href="#program-utama">Beasiswa Santri</a></li>
+                        <li><a href="#program-utama">Pemberdayaan Ekonomi</a></li>
+                    </ul>
                 </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <p>0821 5939 2448</p>
+                <div class="footer-section">
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li><a href="#about-amallan">Tentang Kami</a></li>
+                        <li><a href="#how-it-works">Cara Kerja</a></li>
+                        <li><a href="#dampak-nyata">Dampak Nyata</a></li>
+                        <li><a href="#news-section">Berita & Update</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
                 </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:amallanindonesia@gmail.com">amallanindonesia@gmail.com</a>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Dapatkan update terbaru tentang program dan dampak yang telah dicapai.</p>
+                    <form>
+                        <input type="email" placeholder="Masukkan email Anda" required>
+                        <button type="submit">Berlangganan</button>
+                    </form>
                 </div>
             </div>
-
-            <div class="footer-col">
-                <h3>Jam Operasional</h3>
-                <div class="jam-operasional-item">
-                    <p>Senin - Jumat : 08:00 - 17:00</p>
-                </div>
-                <div class="jam-operasional-item">
-                    <p>Sabtu : 09:00 - 15:00</p>
-                </div>
-                <div class="jam-operasional-item">
-                    <p>Minggu : Tutup</p>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Amallan.id. Semua hak cipta dilindungi. Dibuat dengan ❤️ untuk kemajuan pendidikan Islam Indonesia.</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 | amallan.id Hak Cipta Dilindungi.</p>
         </div>
     </footer>
 
-    <div id="privacy-modal" class="chatbot-modal">
-        <div class="chatbot-modal-content" style="max-width: 600px; height: auto; max-height: 90vh;">
-            <button class="chatbot-close-button" onclick="hidePrivacyModal()">&times;</button>
-            <div style="padding: 30px; color: var(--general-text-dark);">
-                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.8em; margin-bottom: 20px; color: var(--general-text-dark);">Kebijakan Privasi</h3>
-                <p style="margin-bottom: 15px;">Kebijakan Privasi ini menjelaskan bagaimana Amallan.id mengumpulkan, menggunakan, dan melindungi informasi yang Anda berikan ketika menggunakan platform kami.</p>
-                
-                <h4 style="font-family: 'Poppins', sans-serif; font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; color: var(--general-text-dark);">Informasi yang Kami Kumpulkan</h4>
-                <ul style="list-style: disc; margin-left: 20px; margin-bottom: 15px;">
-                    <li>Nama dan informasi kontak pondok pesantren</li>
-                    <li>Data terkait operasional pesantren</li>
-                    <li>Informasi untuk kebutuhan layanan teknologi kami</li>
-                </ul>
-                
-                <h4 style="font-family: 'Poppins', sans-serif; font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; color: var(--general-text-dark);">Penggunaan Informasi</h4>
-                <p style="margin-bottom: 15px;">Kami menggunakan informasi yang kami kumpulkan untuk:</p>
-                <ul style="list-style: disc; margin-left: 20px; margin-bottom: 15px;">
-                    <li>Menyediakan dan meningkatkan layanan kami</li>
-                    <li>Memberikan dukungan teknis</li>
-                    <li>Mengembangkan fitur baru yang relevan</li>
-                    <li>Komunikasi terkait layanan</li>
-                </ul>
-                
-                <h4 style="font-family: 'Poppins', sans-serif; font-size: 1.2em; margin-top: 20px; margin-bottom: 10px; color: var(--general-text-dark);">Keamanan Data</h4>
-                <p style="margin-bottom: 20px;">Kami berkomitmen untuk melindungi data pesantren dengan standar keamanan tinggi sesuai prinsip syariah dan regulasi yang berlaku.</p>
-                
-                <button onclick="hidePrivacyModal()" style="background-color: var(--amallan-dark-green); color: white; padding: 10px 20px; border-radius: 25px; border: none; cursor: pointer; transition: background-color 0.3s ease;">Tutup</button>
-            </div>
-        </div>
-    </div>
-    
     <div id="chatbot-modal" class="chatbot-modal">
         <div class="chatbot-modal-content">
-            <button class="chatbot-close-button" onclick="closeChatbotModal()">&times;</button>
             <div class="header">
-                <img src="{{ asset('asset/Salinan dari Salinan dari Tambahkan judul (2).png') }}" alt="Logo Amallan" class="logo">
-                <h1>Chat Temal</h1>
-                <button class="clear-chat-button">Bersihkan Chat</button>
+                <img src="{{ asset('asset/logo-amallan.png') }}" alt="Logo Amallan" class="logo">
+                <h1>Chatbot Temal</h1>
+                <button class="chatbot-close-button">&times;</button>
             </div>
-
             <div class="chat-container" id="chat-container">
+                <div class="message bot-message">
+                    <p>Halo! Saya Temal, chatbot Amallan. Ada yang bisa saya bantu?</p>
+                </div>
             </div>
-
             <div class="input-container">
                 <input type="text" id="user-input" placeholder="Tanyakan tentang Amallan..." autocomplete="off">
                 <button id="send-button">Kirim</button>
             </div>
         </div>
     </div>
-
-    <button class="chatbot-fab" onclick="openChatbotModal()">
-        <i class="fas fa-robot"></i> <span class="fab-text">Chat dengan Temal</span>
+    
+    <button class="chatbot-fab" onclick="document.getElementById('chatbot-modal').style.display='flex'">
+        <i class="fas fa-robot"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script type="module" src="{{ asset('js/amallan.js') }}"></script>
+    <script>
+        // === Enhanced Header Script ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const header = document.querySelector('header');
+            const chatbotModal = document.getElementById('chatbot-modal');
+            const chatbotCloseButton = chatbotModal.querySelector('.chatbot-close-button');
+            const chatContainer = document.getElementById('chat-container');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+
+            // Mobile menu toggle
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            // Close menu when a link is clicked
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // Header scroll effects
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                if (scrollTop > lastScrollTop && scrollTop > 200) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, { passive: true });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('footer form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert('Terima kasih! Anda telah berlangganan newsletter kami.');
+                    this.reset();
+                });
+            }
+
+            // Chatbot functionality
+            chatbotCloseButton.onclick = function() {
+                chatbotModal.style.display = 'none';
+            }
+            window.onclick = function(event) {
+                if (event.target == chatbotModal) {
+                    chatbotModal.style.display = 'none';
+                }
+            }
+
+            sendButton.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const userText = userInput.value.trim();
+                if (userText === '') return;
+
+                // Display user message
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.className = 'message user-message';
+                userMessageDiv.innerHTML = `<p>${userText}</p>`;
+                chatContainer.appendChild(userMessageDiv);
+
+                userInput.value = '';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.className = 'message bot-message';
+                    botMessageDiv.innerHTML = `<p>${getBotResponse(userText)}</p>`;
+                    chatContainer.appendChild(botMessageDiv);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }, 1000);
+            }
+
+            function getBotResponse(input) {
+                const lowerInput = input.toLowerCase();
+                if (lowerInput.includes('halo') || lowerInput.includes('hai')) {
+                    return 'Halo! Ada yang bisa saya bantu?';
+                } else if (lowerInput.includes('tentang amallan')) {
+                    return 'Amallan.id adalah sebuah inisiatif mulia yang berdedikasi untuk mendukung pembangunan dan pengembangan pesantren di seluruh Indonesia. Kami percaya bahwa pesantren adalah pilar penting dalam mencetak generasi Qur\'ani yang tidak hanya unggul dalam ilmu agama, tetapi juga mandiri dan berdaya saing di era modern.';
+                } else if (lowerInput.includes('program')) {
+                    return 'Kami memiliki program Pembangunan & Renovasi, Pengadaan Sarana Belajar, Beasiswa Santri, dan Pemberdayaan Ekonomi Pesantren. Silakan kunjungi halaman Program untuk informasi lebih detail.';
+                } else if (lowerInput.includes('donasi')) {
+                    return 'Anda bisa berdonasi melalui platform donasi kami di donasi.amallan.id. Setiap donasi Anda akan langsung disalurkan untuk kebutuhan vital pesantren.';
+                } else if (lowerInput.includes('kontak')) {
+                    return 'Anda bisa menghubungi kami melalui email: amallanindonesia@gmail.com, atau WhatsApp di 0821 5939 2448.';
+                } else {
+                    return 'Maaf, saya tidak mengerti. Silakan ajukan pertanyaan lain seputar Amallan.id.';
+                }
+            }
+
+            // Clear chat functionality
+            document.querySelector('.clear-chat-button').addEventListener('click', () => {
+                chatContainer.innerHTML = `
+                    <div class="message bot-message">
+                        <p>Halo! Saya Temal, chatbot Amallan. Ada yang bisa saya bantu?</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
 </body>
 </html>
