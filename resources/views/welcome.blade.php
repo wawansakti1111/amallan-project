@@ -154,7 +154,12 @@
             border-bottom: 1px solid var(--emerald-100);
             transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
             z-index: 1000;
-            padding: var(--space-3) 0;
+
+            /* --- PERUBAHAN DI SINI --- */
+            height: 75px; /* Tetapkan tinggi header, sesuaikan nilainya jika perlu */
+            padding: 0; /* Hapus padding atas dan bawah agar tinggi header konsisten */
+            display: flex;
+            align-items: center;
         }
 
         header.scrolled {
@@ -169,7 +174,7 @@
         }
 
         .header-logo-new img {
-            height: 45px;
+            height: 250px;
             width: auto;
             transition: transform 0.3s ease;
         }
@@ -1475,16 +1480,16 @@
         <div class="container">
             <div class="header-content">
                 <div class="header-logo-new">
-                    <a href="/"><img src="{{ asset('asset/logo-amallan.png') }}" alt="Amallan.id Logo"></a>
+                    <a href="/"><img src="{{ asset('asset/logo_full.png') }}" alt="Amallan.id Logo"></a>
                 </div>
                 <nav class="main-nav" id="mainNav">
                     <ul>
                         <li><a href="#hero">Beranda</a></li>
-                        <li><a href="#about-amallan">Tentang Kami</a></li>
+                        <li><a href="#news-section">Berita</a></li>
                         <li><a href="#program-utama">Program</a></li>
                         <li><a href="#how-it-works">Cara Kerja</a></li>
                         <li><a href="#dampak-nyata">Dampak</a></li>
-                        <li><a href="#news-section">Berita</a></li>
+                        <li><a href="#about-amallan">Tentang Kami</a></li>
                         <li class="header-button-mobile"><a href="http://donasi.amallan.id" class="button-hubungi">Donasi Sekarang</a></li>
                     </ul>
                 </nav>

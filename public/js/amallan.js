@@ -4,7 +4,7 @@
 // PENTING: Ganti dengan Kunci API OpenRouter Anda yang sebenarnya
 // JANGAN mengekspos kunci API Anda di aplikasi produksi!
 // =========================================================
-const OPENROUTER_API_KEY = "sk-or-v1-04471356a0dbfdccb221b124dbf1d76a1fcfd81347cf7deb14e67d6c37f04e9"; // GANTI DENGAN KUNCI API OPENROUTER ANDA YANG ASLI
+const OPENROUTER_API_KEY = "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"; // GANTI DENGAN KUNCI API OPENROUTER ANDA YANG ASLI
 
 if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === "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") {
     console.error("Peringatan: Kunci API OpenRouter belum diatur atau masih placeholder. Harap ganti 'YOUR_OPENROUTER_API_KEY_HERE' dengan kunci API Anda di kode JavaScript. Ingat, ini tidak aman untuk produksi!");
