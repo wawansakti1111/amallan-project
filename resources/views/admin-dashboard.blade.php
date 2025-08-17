@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <div class="page-header">
@@ -92,7 +92,6 @@
                 </div>
             </div>
 
-            <!-- News List Section -->
             <div class="card">
                 <div class="card-header">
                     <h3>
@@ -172,5 +171,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-
+</x-admin-layout>
