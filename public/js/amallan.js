@@ -583,7 +583,7 @@ function addBotMessage(text, quickReplies = []) {
     botMessageContentWrapper.className = 'bot-message-wrapper';
 
     const mascotImg = document.createElement('img');
-    mascotImg.src = "/asset/maskot_amallan.png"; // Perbaikan: Gunakan path absolut
+    mascotImg.src = AMALLAN_ASSETS.mascot; // Menggunakan variabel global
     mascotImg.alt = 'Maskot Amallan';
     mascotImg.className = 'mascot-icon';
 
@@ -635,7 +635,7 @@ function showTypingIndicator() {
     typingIndicatorWrapper.id = 'typing-indicator-instance';
 
     const mascotImg = document.createElement('img');
-    mascotImg.src = "/asset/maskot_amallan.png"; // Perbaikan: Gunakan path absolut
+    mascotImg.src = AMALLAN_ASSETS.mascot; // Menggunakan variabel global
     mascotImg.alt = 'Maskot Amallan';
     mascotImg.className = 'mascot-icon';
 
