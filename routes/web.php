@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\NewsController; // Menggunakan NewsController untuk CRUD
+use App\Http\Controllers\Admin\NewsController; 
 use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
