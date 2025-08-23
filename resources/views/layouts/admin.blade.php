@@ -104,9 +104,9 @@
                 <nav class="flex items-center space-x-6 admin-menu">
                     <ul class="flex space-x-4">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('admin.news.index') }}">Kelola Berita</a></li>
+                        <li><a href="{{ route('admin.dashboard') }}">Kelola Berita</a></li>
                     </ul>
-                    
+                    x
                     <!-- Dropdown Profil dan Logout -->
                     <div class="relative">
                         <x-dropdown align="right" width="48">

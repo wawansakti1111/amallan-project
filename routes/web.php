@@ -3,47 +3,46 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\NewsController; 
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Models\News;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Di sini Anda dapat mendaftarkan rute web untuk aplikasi Anda.
-| Rute-rute ini dimuat oleh RouteServiceProvider dalam grup yang
-| berisi middleware "web".
-|
 */
 
-// Rute Tampilan Publik (User)
+// Rute Halaman Depan (Homepage)
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/news/{news:slug}', [HomeController::class, 'showNews'])->name('news.show');
 
-// Rute Autentikasi Laravel Breeze
-Route::middleware(['auth', 'verified'])->group(function () {
+// == TAMBAHKAN BARIS INI ==
+// Rute untuk menampilkan detail satu berita berdasarkan slug-nya
+Route::get('/news/{news:slug}', [HomeController::class, 'showNews'])->name('news.show');
+// ==========================
+
+// Rute default bawaan Breeze/Jetstream
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Rute untuk manajemen profil pengguna
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Grup Rute Khusus Admin
-// Rute ini dilindungi oleh middleware 'auth' dan 'auth.admin'
+// === Grup Rute Khusus Admin ===
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->name('admin.')->group(function () {
-    // Rute utama dashboard admin
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
-    // Rute-rute CRUD untuk Berita menggunakan Route::resource
-    // Ini akan otomatis membuat rute:
-    // GET /admin/news -> admin.news.index (Daftar Berita)
-    // GET /admin/news/create -> admin.news.create
-    // POST /admin/news -> admin.news.store
-    // GET /admin/news/{news} -> admin.news.show
-    // GET /admin/news/{news}/edit -> admin.news.edit
-    // PUT/PATCH /admin/news/{news} -> admin.news.update
-    // DELETE /admin/news/{news} -> admin.news.destroy
-    Route::resource('news', NewsController::class);
+    Route::get('/dashboard/{news?}', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::post('news', [NewsController::class, 'store'])->name('news.store');
+    Route::put('news/{news}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::get('news/{news}/edit', function (News $news) {
+        return redirect()->route('admin.dashboard', ['news' => $news]);
+    })->name('news.edit');
 });
 
+// File rute untuk otentikasi
 require __DIR__.'/auth.php';

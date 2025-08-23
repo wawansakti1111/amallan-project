@@ -1,5 +1,4 @@
 <?php
-// File: amallan-project/app/Http/Controllers/Admin/NewsController.php
 
 namespace App\Http\Controllers\Admin;
 
@@ -11,17 +10,9 @@ use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    public function index()
-    {
-        $news = News::latest()->get();
-        return view('admin.news.index', compact('news'));
-    }
-
-    public function create()
-    {
-        return view('admin.news.create');
-    }
-
+    /**
+     * Menyimpan berita baru ke database.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -39,14 +30,13 @@ class NewsController extends Controller
             'image' => $path,
         ]);
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil ditambahkan!');
+        // Arahkan kembali ke dashboard setelah berhasil
+        return redirect()->route('admin.dashboard')->with('success', 'Berita berhasil ditambahkan!');
     }
 
-    public function edit(News $news)
-    {
-        return view('admin.news.edit', compact('news'));
-    }
-
+    /**
+     * Memperbarui data berita yang ada di database.
+     */
     public function update(Request $request, News $news)
     {
         $request->validate([
@@ -55,13 +45,14 @@ class NewsController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $path = $news->image;
         if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
             if ($news->image) {
                 Storage::disk('public')->delete($news->image);
             }
+            // Simpan gambar baru
             $path = $request->file('image')->store('news_images', 'public');
-        } else {
-            $path = $news->image;
         }
 
         $news->update([
@@ -71,16 +62,22 @@ class NewsController extends Controller
             'image' => $path,
         ]);
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diupdate!');
+        // Arahkan kembali ke dashboard setelah berhasil
+        return redirect()->route('admin.dashboard')->with('success', 'Berita berhasil diupdate!');
     }
 
+    /**
+     * Menghapus berita dari database.
+     */
     public function destroy(News $news)
     {
+        // Hapus gambar dari storage jika ada
         if ($news->image) {
             Storage::disk('public')->delete($news->image);
         }
         $news->delete();
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus!');
+        // Arahkan kembali ke dashboard setelah berhasil
+        return redirect()->route('admin.dashboard')->with('success', 'Berita berhasil dihapus!');
     }
 }
