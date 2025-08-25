@@ -176,7 +176,7 @@
             }
 
             .header-logo-new img {
-                height: 45px;
+                height: 200px;
                 width: auto;
                 transition: transform 0.3s ease;
                 vertical-align: middle;
@@ -654,11 +654,10 @@
                 margin: 0;
             }
 
-            /* Dampak Section */
+            /* Dampak Section - Perbaikan untuk iOS */
             #dampak-nyata {
                 background: linear-gradient(135deg, var(--emerald-50) 0%, var(--teal-50) 100%);
             }
-
             .dampak-content {
                 display: grid;
                 grid-template-columns: 1.2fr 1fr;
@@ -669,7 +668,6 @@
                 box-shadow: var(--shadow-xl);
                 background: var(--white);
             }
-
             .dampak-gallery {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -677,63 +675,45 @@
                 gap: var(--space-2);
                 padding: 0;
             }
-
             .dampak-gallery img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                -webkit-object-fit: cover; /* Vendor prefix khusus untuk iOS */
+                image-rendering: -webkit-optimize-contrast; /* Meningkatkan kualitas scaling di iOS */
+                image-rendering: crisp-edges; /* Alternatif untuk kualitas scaling */
                 transition: transform 0.3s ease;
+                max-height: 100%; /* Mencegah gambar melampaui batas kontainer */
+                display: block; /* Menghilangkan space tambahan di bawah gambar */
+                -webkit-backface-visibility: hidden; /* Mencegah rendering buram pada transformasi iOS */
             }
-
             .dampak-gallery img:hover {
+                -webkit-transform: scale(1.05); /* Vendor prefix untuk iOS */
                 transform: scale(1.05);
             }
 
-            .dampak-info-card {
-                background: var(--emerald-50);
-                padding: var(--space-10);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                border: 1px solid rgba(16, 185, 129, 0.2);
+            /* Perbaikan khusus untuk tampilan mobile iOS */
+            @media (max-width: 480px) {
+                .dampak-content {
+                    grid-template-columns: 1fr;
+                }
+                .dampak-gallery {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(4, auto);
+                    aspect-ratio: auto;
+                }
+                .dampak-gallery img {
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 16/9; /* Menjaga rasio aspek yang konsisten */
+                    object-fit: cover;
+                    -webkit-object-fit: cover;
+                    min-height: 200px; /* Mencegah gambar terlalu kecil */
+                }
+                .dampak-info-card {
+                    padding: var(--space-6);
+                }
             }
-
-            .dampak-info-card h3 {
-                color: var(--emerald-800);
-                font-size: var(--text-2xl);
-                margin-bottom: var(--space-6);
-            }
-
-            .dampak-info-card p,
-            .dampak-info-card ul li {
-                font-size: var(--text-base);
-                color: var(--slate-700);
-                line-height: 1.7;
-            }
-
-            .dampak-info-card ul {
-                list-style: none;
-                padding: 0;
-                margin: var(--space-4) 0;
-            }
-
-            .dampak-info-card ul li {
-                position: relative;
-                padding-left: var(--space-6);
-                margin-bottom: var(--space-2);
-            }
-
-            .dampak-info-card ul li::before {
-                content: '✓';
-                position: absolute;
-                left: 0;
-                color: var(--emerald-600);
-                font-weight: bold;
-            }
-
-            .dampak-info-card ul li strong {
-                color: var(--emerald-700);
-                font-weight: 600;
             }
 
             /* News Section */
@@ -849,7 +829,7 @@
             }
 
             .sahabat-card-new {
-                background-color: #2DB674;
+                background-color: #4f9272ff;
                 color: white;
                 border-radius: 25px;
                 padding: var(--space-8);
